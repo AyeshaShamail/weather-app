@@ -5,6 +5,8 @@ const WeatherApp = () => {
   const [city, setCity] = useState();
   const [weather, setWeather] = useState();
 
+  const apiKey = process.env.REACT_APP_WEATHER_API_KEY;
+
   const handleCityChange = (e) => {
     setCity(e.target.value);
   };
@@ -12,9 +14,10 @@ const WeatherApp = () => {
   const fetchWeather = async () => {
     try {
       const response = await axios.get(
-        `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${"da78063109ad196bc6f02c8fa2cdf5f7"}`
+        `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}`
       );
       console.log("response", response);
+
       setWeather(response);
     } catch (error) {
       console.log("Getting error while fetching the weather", error);
